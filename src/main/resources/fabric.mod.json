@@ -21,6 +21,9 @@
 		],
 		"client": [
 			"net.a11v1r15.creakingsap.CreakingSapClient"
+		],
+		"fabric-datagen": [
+			"net.a11v1r15.creakingsap.CreakingSapDataGenerator"
 		]
 	},
 	"mixins": [

@@ -1,0 +1,10 @@
+{
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0,
+  "ingredient": "minecraft:creaking_heart",
+  "result": {
+    "id": "minecraft:charcoal"
+  },
+  "type": "minecraft:smelting"
+}

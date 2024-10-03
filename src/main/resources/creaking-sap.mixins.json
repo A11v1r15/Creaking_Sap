@@ -3,7 +3,7 @@
 	"package": "net.a11v1r15.creakingsap.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"AbstractFurnaceBlockEntityMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
