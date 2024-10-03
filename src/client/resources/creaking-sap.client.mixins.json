@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "net.a11v1r15.creakingsap.mixin.client",
+	"compatibilityLevel": "JAVA_21",
+	"client": [
+		"ExampleClientMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

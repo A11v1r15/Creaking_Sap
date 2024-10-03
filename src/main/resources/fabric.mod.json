@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "creaking-sap",
+	"version": "${version}",
+	"name": "CreakingSap",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"A11v1r15"
+	],
+	"contact": {
+		"homepage": "https://modrinth.com/mod/creakingSap",
+		"sources": "https://github.com/A11v1r15/CreakingSap",
+		"issues": "https://github.com/A11v1r15/CreakingSap/issues"
+	},
+	"license": "MIT",
+	"icon": "assets/creakingsap/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.a11v1r15.creakingsap.CreakingSap"
+		],
+		"client": [
+			"net.a11v1r15.creakingsap.CreakingSapClient"
+		]
+	},
+	"mixins": [
+		"creaking-sap.mixins.json",
+		{
+			"config": "creaking-sap.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": ">=1.21.2-alpha.24.40.a",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
