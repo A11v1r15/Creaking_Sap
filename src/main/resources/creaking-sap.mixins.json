@@ -1,11 +1,13 @@
 {
-	"required": true,
-	"package": "net.a11v1r15.creakingsap.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"AbstractFurnaceBlockEntityMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "net.a11v1r15.creakingsap.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractFurnaceBlockEntityMixin",
+    "BlockEntityTypeMixin",
+    "CreakingHeartBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }

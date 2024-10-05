@@ -13,6 +13,7 @@ public class CreakingSap implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		CreakingSapItems.initialize();
+		CreakingSapBlocks.initialize();
 		LOGGER.info("Please, grease your doors");
 	}
 
