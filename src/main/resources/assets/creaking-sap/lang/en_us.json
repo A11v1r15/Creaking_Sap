@@ -1,3 +1,14 @@
 {
-  "item.creaking-sap.creaking_sap_bucket": "Creaking Sap Bucket"
+  "item.creaking-sap.creaking_sap_bucket": "Creaking Sap Bucket",
+  "block.creaking-sap.oak_creaking_heart": "Oak Creaking Heart",
+  "block.creaking-sap.spruce_creaking_heart": "Spruce Creaking Heart",
+  "block.creaking-sap.birch_creaking_heart": "Birch Creaking Heart",
+  "block.creaking-sap.jungle_creaking_heart": "Jungle Creaking Heart",
+  "block.creaking-sap.acacia_creaking_heart": "Acacia Creaking Heart",
+  "block.creaking-sap.dark_oak_creaking_heart": "Dark Oak Creaking Heart",
+  "block.creaking-sap.mangrove_creaking_heart": "Mangrove Creaking Heart",
+  "block.creaking-sap.cherry_creaking_heart": "Cherry Creaking Heart",
+  "block.creaking-sap.crimson_creaking_heart": "Crimson Creaking Heart",
+  "block.creaking-sap.warped_creaking_heart": "Warped Creaking Heart",
+  "block.creaking-sap.bamboo_creaking_heart": "Bamboo Creaking Heart"
 }

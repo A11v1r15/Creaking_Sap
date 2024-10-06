@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column_horizontal",
+	"textures": {
+		"end": "creaking-sap:block/crimson_creaking_heart_top",
+		"side": "creaking-sap:block/crimson_creaking_heart"
+	}
+}

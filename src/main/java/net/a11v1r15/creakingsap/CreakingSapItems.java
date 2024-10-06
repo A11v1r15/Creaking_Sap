@@ -18,11 +18,17 @@ public class CreakingSapItems {
                     .maxCount(1)
     );
 
-    public static final Item BIRCH_CREAKING_HEART = Items.register(CreakingSapBlocks.BIRCH_CREAKING_HEART);
     public static final Item OAK_CREAKING_HEART = Items.register(CreakingSapBlocks.OAK_CREAKING_HEART);
-    public static final Item DARK_OAK_CREAKING_HEART = Items.register(CreakingSapBlocks.DARK_OAK_CREAKING_HEART);
     public static final Item SPRUCE_CREAKING_HEART = Items.register(CreakingSapBlocks.SPRUCE_CREAKING_HEART);
+    public static final Item BIRCH_CREAKING_HEART = Items.register(CreakingSapBlocks.BIRCH_CREAKING_HEART);
     public static final Item JUNGLE_CREAKING_HEART = Items.register(CreakingSapBlocks.JUNGLE_CREAKING_HEART);
+    public static final Item ACACIA_CREAKING_HEART = Items.register(CreakingSapBlocks.ACACIA_CREAKING_HEART);
+    public static final Item DARK_OAK_CREAKING_HEART = Items.register(CreakingSapBlocks.DARK_OAK_CREAKING_HEART);
+    public static final Item MANGROVE_CREAKING_HEART = Items.register(CreakingSapBlocks.MANGROVE_CREAKING_HEART);
+    public static final Item CHERRY_CREAKING_HEART = Items.register(CreakingSapBlocks.CHERRY_CREAKING_HEART);
+    public static final Item CRIMSON_CREAKING_HEART = Items.register(CreakingSapBlocks.CRIMSON_CREAKING_HEART);
+    public static final Item WARPED_CREAKING_HEART = Items.register(CreakingSapBlocks.WARPED_CREAKING_HEART);
+    public static final Item BAMBOO_CREAKING_HEART = Items.register(CreakingSapBlocks.BAMBOO_CREAKING_HEART);
 
     public static void initialize() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS)
@@ -31,11 +37,17 @@ public class CreakingSapItems {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS)
                 .register((itemGroup) -> itemGroup.addBefore(Items.CREAKING_HEART,
-                        CreakingSapItems.BIRCH_CREAKING_HEART,
                         CreakingSapItems.OAK_CREAKING_HEART,
-                        CreakingSapItems.DARK_OAK_CREAKING_HEART,
                         CreakingSapItems.SPRUCE_CREAKING_HEART,
-                        CreakingSapItems.JUNGLE_CREAKING_HEART));
+                        CreakingSapItems.BIRCH_CREAKING_HEART,
+                        CreakingSapItems.JUNGLE_CREAKING_HEART,
+                        CreakingSapItems.ACACIA_CREAKING_HEART,
+                        CreakingSapItems.DARK_OAK_CREAKING_HEART,
+                        CreakingSapItems.MANGROVE_CREAKING_HEART,
+                        CreakingSapItems.CHERRY_CREAKING_HEART,
+                        CreakingSapItems.CRIMSON_CREAKING_HEART,
+                        CreakingSapItems.WARPED_CREAKING_HEART,
+                        CreakingSapItems.BAMBOO_CREAKING_HEART));
     }
 
     private static RegistryKey<Item> keyOf(String id) {
