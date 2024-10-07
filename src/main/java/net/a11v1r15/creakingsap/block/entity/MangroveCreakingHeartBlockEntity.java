@@ -1,9 +1,10 @@
 package net.a11v1r15.creakingsap.block.entity;
 
 import net.a11v1r15.creakingsap.block.AbstractCreakingHeartBlock;
-import net.a11v1r15.creakingsap.block.BirchCreakingHeartBlock;
+import net.a11v1r15.creakingsap.block.MangroveCreakingHeartBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CreakingHeartBlock;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
@@ -13,8 +14,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
-public class BirchCreakingHeartBlockEntity extends AbstractCreakingHeartBlockEntity {
-    public BirchCreakingHeartBlockEntity(BlockPos pos, BlockState state) {
+public class MangroveCreakingHeartBlockEntity extends AbstractCreakingHeartBlockEntity {
+    public MangroveCreakingHeartBlockEntity(BlockPos pos, BlockState state) {
         super(pos, state);
     }
 
@@ -46,22 +47,22 @@ public class BirchCreakingHeartBlockEntity extends AbstractCreakingHeartBlockEnt
         if (blockEntity.creakingUpdateTimer-- < 0) {
             blockEntity.creakingUpdateTimer = 20;
             if (blockEntity.creakingPuppet != null) {
-                if (BirchCreakingHeartBlock.isWorldNaturalAndNight(world) && !(blockEntity.creakingPuppet.squaredDistanceTo(Vec3d.ofBottomCenter(pos)) > 1156.0)) {
+                if (MangroveCreakingHeartBlock.isWorldNaturalAndNight(world) && !(blockEntity.creakingPuppet.squaredDistanceTo(Vec3d.ofBottomCenter(pos)) > 1156.0)) {
                     if (blockEntity.creakingPuppet.isRemoved()) {
                         blockEntity.creakingPuppet = null;
                     }
 
-                    if (!BirchCreakingHeartBlock.shouldBeEnabled(state, world, pos) && blockEntity.creakingPuppet == null) {
+                    if (!MangroveCreakingHeartBlock.shouldBeEnabled(state, world, pos) && blockEntity.creakingPuppet == null) {
                         world.setBlockState(pos, state.with(AbstractCreakingHeartBlock.CREAKING, AbstractCreakingHeartBlock.Creaking.DISABLED), 3);
                     }
 
                 } else {
                     blockEntity.onBreak(null);
                 }
-            } else if (!BirchCreakingHeartBlock.shouldBeEnabled(state, world, pos)) {
+            } else if (!MangroveCreakingHeartBlock.shouldBeEnabled(state, world, pos)) {
                 world.setBlockState(pos, state.with(AbstractCreakingHeartBlock.CREAKING, AbstractCreakingHeartBlock.Creaking.DISABLED), 3);
             } else {
-                if (!BirchCreakingHeartBlock.isWorldNaturalAndNight(world)) {
+                if (!MangroveCreakingHeartBlock.isWorldNaturalAndNight(world)) {
                     if (state.get(AbstractCreakingHeartBlock.CREAKING) == AbstractCreakingHeartBlock.Creaking.ACTIVE) {
                         world.setBlockState(pos, state.with(AbstractCreakingHeartBlock.CREAKING, AbstractCreakingHeartBlock.Creaking.DORMANT), 3);
                         return;

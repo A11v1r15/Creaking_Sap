@@ -1,6 +1,7 @@
 package net.a11v1r15.creakingsap.block;
 
 import com.mojang.serialization.MapCodec;
+import net.a11v1r15.creakingsap.block.entity.AbstractCreakingHeartBlockEntity;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -15,6 +16,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -24,11 +26,10 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
-
 public class AbstractCreakingHeartBlock extends BlockWithEntity {
     public static final MapCodec<AbstractCreakingHeartBlock> CODEC = createCodec(AbstractCreakingHeartBlock::new);
     public static final EnumProperty<Direction.Axis> AXIS;
-    public static final EnumProperty<CreakingHeartBlock.Creaking> CREAKING;
+    public static final EnumProperty<AbstractCreakingHeartBlock.Creaking> CREAKING;
 
     public MapCodec<AbstractCreakingHeartBlock> getCodec() {
         return CODEC;
@@ -36,11 +37,11 @@ public class AbstractCreakingHeartBlock extends BlockWithEntity {
 
     public AbstractCreakingHeartBlock(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(AXIS, Direction.Axis.Y).with(CREAKING, CreakingHeartBlock.Creaking.DISABLED));
+        this.setDefaultState(this.getDefaultState().with(AXIS, Direction.Axis.Y).with(CREAKING, Creaking.DISABLED));
     }
 
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new CreakingHeartBlockEntity(pos, state);
+        return new AbstractCreakingHeartBlockEntity(pos, state);
     }
 
     @Nullable
@@ -48,7 +49,7 @@ public class AbstractCreakingHeartBlock extends BlockWithEntity {
         if (world.isClient) {
             return null;
         } else {
-            return state.get(CREAKING) != CreakingHeartBlock.Creaking.DISABLED ? validateTicker(type, BlockEntityType.CREAKING_HEART, CreakingHeartBlockEntity::tick) : null;
+            return state.get(CREAKING) != Creaking.DISABLED ? validateTicker(type, BlockEntityType.CREAKING_HEART, CreakingHeartBlockEntity::tick) : null;
         }
     }
 
@@ -58,7 +59,7 @@ public class AbstractCreakingHeartBlock extends BlockWithEntity {
 
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if (isWorldNaturalAndNight(world)) {
-            if (state.get(CREAKING) != CreakingHeartBlock.Creaking.DISABLED) {
+            if (state.get(CREAKING) != Creaking.DISABLED) {
                 if (random.nextInt(16) == 0 && isSurroundedByLogs(world, pos)) {
                     world.playSound(pos.getX() + world.random.nextBetween(-16, 16), pos.getY() + world.random.nextBetween(-14, 2), pos.getZ() + world.random.nextBetween(-16, 16), SoundEvents.BLOCK_CREAKING_HEART_IDLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
                 }
@@ -74,8 +75,8 @@ public class AbstractCreakingHeartBlock extends BlockWithEntity {
 
     private static BlockState enableIfValid(BlockState state, WorldView world, BlockPos pos) {
         boolean bl = shouldBeEnabled(state, world, pos);
-        CreakingHeartBlock.Creaking creaking = state.get(CREAKING);
-        return bl && creaking == CreakingHeartBlock.Creaking.DISABLED ? state.with(CREAKING, CreakingHeartBlock.Creaking.DORMANT) : state;
+        Creaking creaking = state.get(CREAKING);
+        return bl && creaking == Creaking.DISABLED ? state.with(CREAKING, Creaking.DORMANT) : state;
     }
 
     public static boolean shouldBeEnabled(BlockState state, WorldView world, BlockPos pos) {
@@ -125,8 +126,8 @@ public class AbstractCreakingHeartBlock extends BlockWithEntity {
 
     protected void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
         BlockEntity var7 = world.getBlockEntity(pos);
-        if (var7 instanceof CreakingHeartBlockEntity creakingHeartBlockEntity) {
-            creakingHeartBlockEntity.onBreak(null);
+        if (var7 instanceof AbstractCreakingHeartBlockEntity abstractCreakingHeartBlockEntity) {
+            abstractCreakingHeartBlockEntity.onBreak(null);
         }
 
         super.onStateReplaced(state, world, pos, newState, moved);
@@ -134,8 +135,8 @@ public class AbstractCreakingHeartBlock extends BlockWithEntity {
 
     public BlockState onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player) {
         BlockEntity var6 = world.getBlockEntity(pos);
-        if (var6 instanceof CreakingHeartBlockEntity creakingHeartBlockEntity) {
-            creakingHeartBlockEntity.onBreak(player.getDamageSources().playerAttack(player));
+        if (var6 instanceof AbstractCreakingHeartBlockEntity abstractCreakingHeartBlockEntity) {
+            abstractCreakingHeartBlockEntity.onBreak(player.getDamageSources().playerAttack(player));
         }
 
         return super.onBreak(world, pos, state, player);
@@ -143,6 +144,22 @@ public class AbstractCreakingHeartBlock extends BlockWithEntity {
 
     static {
         AXIS = Properties.AXIS;
-        CREAKING = Properties.CREAKING;
+        CREAKING = EnumProperty.of("creaking", Creaking.class);
+    }
+
+    public enum Creaking implements StringIdentifiable {
+        DISABLED("disabled"),
+        DORMANT("dormant"),
+        ACTIVE("active");
+
+        private final String name;
+
+        Creaking(final String name) {
+            this.name = name;
+        }
+
+        public String asString() {
+            return this.name;
+        }
     }
 }
